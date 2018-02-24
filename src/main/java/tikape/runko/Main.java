@@ -6,6 +6,9 @@ import static spark.Spark.*;
 import spark.template.thymeleaf.ThymeleafTemplateEngine;
 import tikape.runko.database.Database;
 import tikape.runko.database.OpiskelijaDao;
+import tikape.runko.database.RaakaAineDao;
+import tikape.runko.database.SmoothieDao;
+import tikape.runko.database.SmoothieRaakaAineDao;
 
 public class Main {
 
@@ -14,6 +17,9 @@ public class Main {
         database.init();
 
         OpiskelijaDao opiskelijaDao = new OpiskelijaDao(database);
+        RaakaAineDao raDao = new RaakaAineDao(database);
+        SmoothieDao sDao = new SmoothieDao(database);
+        SmoothieRaakaAineDao sraDao = new SmoothieRaakaAineDao(database);
 
         get("/", (req, res) -> {
             HashMap map = new HashMap<>();

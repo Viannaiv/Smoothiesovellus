@@ -13,6 +13,12 @@ import tikape.runko.domain.Smoothie;
  * @author Vivianna
  */
 public class SmoothieDao implements Dao<Smoothie, Integer> {
+    
+    private Database database;
+
+    public SmoothieDao(Database database) {
+        this.database = database;
+    }
 
     @Override
     public Smoothie findOne(Integer key) throws SQLException {

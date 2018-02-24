@@ -13,6 +13,12 @@ import tikape.runko.domain.RaakaAine;
  * @author Vivianna
  */
 public class RaakaAineDao implements Dao<RaakaAine, Integer> {
+    
+    private Database database;
+
+    public RaakaAineDao(Database database) {
+        this.database = database;
+    }
 
     @Override
     public RaakaAine findOne(Integer key) throws SQLException {
