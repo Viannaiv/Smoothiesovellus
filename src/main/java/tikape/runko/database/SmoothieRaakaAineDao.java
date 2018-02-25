@@ -159,11 +159,32 @@ public class SmoothieRaakaAineDao implements Dao<SmoothieRaakaAine, Integer> {
         conn.close();
         
     }
-    
-    public List<SmoothieRaakaAine> listaJarjestyksessa() throws SQLException {
-        //huom alla kommentti
-        return null;
+    //muuta nimi
+    public List<SmoothieRaakaAine> smoothieKohtainenListaJarjestyksessa(Integer smoothieID) throws SQLException {
+        Connection conn = database.getConnection();
+        PreparedStatement stmt = conn.prepareStatement("SELECT * FROM SmoothieRaakaAine "
+                + "WHERE smoothie_id = ? ORDER BY jarjestys");
+        stmt.setInt(1, smoothieID);
+        
+        ResultSet rs = stmt.executeQuery();
+        List<SmoothieRaakaAine> srat = new ArrayList<>();
+        
+        while(rs.next()) {
+            SmoothieRaakaAine sra = new SmoothieRaakaAine(rs.getInt("raaka_aine_id"), 
+                    rs.getInt("smoothie_id"), rs.getInt("jarjestys"),
+                    rs.getString("maara"), rs.getString("ohje"));
+            srat.add(sra);
+        }
+        
+        rs.close();
+        stmt.close();
+        conn.close();
+        
+        return srat;
+        
     }
+//    Tarvitaanko tämämetodi ja voisiko jarjestaa vielä raaka_aineidn 
+//    perusteella vai tuleeko oikea jarjestys
     //huom! jarjestys haku ratkaistaan order by tupla ehdolla joss aensin 
 //    jarjestys numero sitten raaka-aine id.
 //    täytyy voida päivittää?  ei saa olla duplikaatteja, 
