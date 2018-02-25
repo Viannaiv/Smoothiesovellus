@@ -41,7 +41,7 @@ public class RaakaAineDao implements Dao<RaakaAine, Integer> {
         return ra;
     }
     
-    public RaakaAine findOneOnName(String nimi) throws SQLException {
+    public RaakaAine findByName(String nimi) throws SQLException {
         Connection conn = database.getConnection();
         PreparedStatement stmt = conn.prepareStatement("SELECT * FROM RaakaAine "
                 + "WHERE nimi = '?'");
@@ -98,7 +98,7 @@ public class RaakaAineDao implements Dao<RaakaAine, Integer> {
 
     @Override
     public void saveOrUpdate(RaakaAine ra) throws SQLException {
-        RaakaAine raakaA = findOneOnName(ra.getNimi());
+        RaakaAine raakaA = findByName(ra.getNimi());
         
         if(raakaA != null) {
             return;

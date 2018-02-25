@@ -1,6 +1,6 @@
 package tikape.runko;
 
-import java.util.HashMap;
+import java.util.*;
 import spark.ModelAndView;
 import static spark.Spark.*;
 import spark.template.thymeleaf.ThymeleafTemplateEngine;
