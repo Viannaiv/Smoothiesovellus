@@ -37,7 +37,7 @@ public class Database {
 
     private List<String> sqliteLauseet() {
         ArrayList<String> lista = new ArrayList<>();
-//laita tänne sqlitekomennot niin toimii.
+//laita tänne sqlitekomennot niin toimii. muuta postgre muotoon lopuksi.
         // tietokantataulujen luomiseen tarvittavat komennot suoritusjärjestyksessä
         lista.add("CREATE TABLE Opiskelija (id integer PRIMARY KEY, nimi varchar(255));");
         lista.add("INSERT INTO Opiskelija (nimi) VALUES ('Platon');");
@@ -51,8 +51,27 @@ public class Database {
 //                + " jarjestys integer, maara varchar(100), ohje varchar(200), "
 //                + "FOREIGN KEY (raaka_aine_id) REFERENCES RaakaAine(id), "
 //                + "FOREIGN KEY (smoothie_id) REFERENCES Smoothie(id));");
+
+//        lista.add("DROP TABLE Opiskelija;");
 //        Lisää tieto tauluihin testaamiseksi
         
+//          lista.add("INSERT INTO Smoothie (id, nimi) VALUES (1, 'Avokado-kiivismoothie');");
+//          lista.add("INSERT INTO RaakaAine (id, nimi) VALUES (1, 'Avokado');");
+//          lista.add("INSERT INTO RaakaAine (id, nimi) VALUES (2, 'Kiivi');");
+//          lista.add("INSERT INTO RaakaAine (id, nimi) VALUES (3, 'Omenamehu');");
+//          lista.add("INSERT INTO RaakaAine (id, nimi) VALUES (4, 'Hunaja');");
+//          lista.add("INSERT INTO SmoothieRaakaAine "
+//                  + "(raaka_aine_id, smoothie_id, jarjestys, maara, ohje) VALUES "
+//                  + "(1, 1, 1, '1 kpl', 'Halkaise avokado ja poista kivi');");
+//          lista.add("INSERT INTO SmoothieRaakaAine "
+//                  + "(raaka_aine_id, smoothie_id, jarjestys, maara, ohje) VALUES "
+//                  + "(2, 1, 2, '3 kpl', 'Kuori');");
+//          lista.add("INSERT INTO SmoothieRaakaAine "
+//                  + "(raaka_aine_id, smoothie_id, jarjestys, maara, ohje) VALUES "
+//                  + "(3, 1, 3, '2 - 3 dl', '');");
+//          lista.add("INSERT INTO SmoothieRaakaAine "
+//                  + "(raaka_aine_id, smoothie_id, jarjestys, maara, ohje) VALUES "
+//                  + "(4, 1, 4, '2 rkl', '');");
         
 
         return lista;

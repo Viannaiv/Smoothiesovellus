@@ -34,5 +34,10 @@ public class SmoothieRaakaAineDao implements Dao<SmoothieRaakaAine, Integer> {
     public void delete(Integer key) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public void saveOrUpdate(SmoothieRaakaAine object) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

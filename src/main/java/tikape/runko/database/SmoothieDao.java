@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package tikape.runko.database;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 import tikape.runko.domain.Smoothie;
@@ -22,7 +23,8 @@ public class SmoothieDao implements Dao<Smoothie, Integer> {
 
     @Override
     public Smoothie findOne(Integer key) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Connection conn = database.getConnection();
+        
     }
 
     @Override
@@ -32,6 +34,11 @@ public class SmoothieDao implements Dao<Smoothie, Integer> {
 
     @Override
     public void delete(Integer key) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void saveOrUpdate(Smoothie object) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

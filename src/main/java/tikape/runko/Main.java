@@ -11,6 +11,7 @@ import tikape.runko.database.SmoothieDao;
 import tikape.runko.database.SmoothieRaakaAineDao;
 
 public class Main {
+//    Remember to trim names
 
     public static void main(String[] args) throws Exception {
         Database database = new Database("jdbc:sqlite:smoothie.db");
