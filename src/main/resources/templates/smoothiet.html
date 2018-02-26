@@ -3,7 +3,7 @@
 
     <head>
         <title>Smoothiesovellus</title>
-        <meta charset="utf-8" />
+        <meta charset="utf-8"/>
     </head>
 
     <body>
@@ -13,12 +13,61 @@
             <li th:each="smoothie: ${smoothiet}">
                 <a th:href="@{'~/smoothie/' + ${smoothie.id}}">
                     <span th:text="${smoothie.nimi}">smoothien nimi</span>
-                </a>   
+                </a>
+                <form method="POST" action="/smoothie/delete">
+                    <input type="hidden" name="id" th:value="${smoothie.id}"/>
+                    <input type="submit" value="Poista"/>   
+                </form>
             </li>
-        </ul>
+        </ul><br/>
+        
+        <h3>Luo uusi smoothie</h3>
+        
+        <form method="POST" action="/create/smoothie">
+            <span>Smoothien nimi:</span><br/>
+            <input type="text" name="nimi"/><br/><br/>
+            <input type="submit" value="Luo smoothie"/>
+        </form><br/>
+        
+         <h3>Lisää raaka-aineita smoothieen</h3>
+        
+        <form method="POST" action="/create/smoothieraakaaine">
+            <span>Smoothien nimi:</span><br/>
+            <select name="smoothie_id" size="4">
+                <option th:each="smoothie: ${smoothiet}" th:value="${smoothie.id}" 
+                        th:text="${smoothie.nimi}">smoothien nimi</option>
+            </select><br/><br/>
+            
+            <span>Raaka-aineen nimi:</span><br/>
+            <select name="raaka_aine_id" size="4">
+                <option th:each="raakaaine: ${raakaaineet}" th:value="${raakaaine.id}"
+                        th:text="${raakaaine.nimi}">raakaaineen nimi</option>
+            </select><br/><br/>
+            
+            <span>Järjestys:</span><br/>
+            <select name="jarjestys" size="4">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+            </select><br/><br/>
+            
+            <span>Määrä:</span><br/>
+            <input type="text" name="maara"/><br/><br/>
+            
+            <span>Ohje:</span><br/>
+            <textarea name="ohje" rows="6" cols="15"></textarea><br/>
+            <br/>
+            <input type="submit" value="Lisää raaka-aine"/>
+        </form><br/><br/>
+        
+        <a href="/">Palaa aloitussivulle</a>
+        
     </body>
 </html>
-
-<a th:href="@{'~/smoothie/' + ${smoothie.id}}">
-                    <span th:text="${smoothie.nimi}">smoothien nimi</span>
-                </a>

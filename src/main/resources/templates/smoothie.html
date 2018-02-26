@@ -2,18 +2,62 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
     <head>
-        <title>Otsikko</title>
+        <title>Smoothiesovellus</title>
         <meta charset="utf-8" />
     </head>
 
     <body>
-        <h1>Hei opiskelijat!</h1>
-
+        <h2><span th:text="${smoothie.nimi}">Smoothien nimi</span></h2>
+        <span>oisko tänne kans luo raaka-aine ja sit eri uudelleen ohjaus loppun?</span><br/>
+        <span>huom raakaainelista ei toimi. koska ei raaka-aine vaan sra</span>
         <ol>
-            <li th:each="opiskelija: ${opiskelijat}">
-                <span th:text="${opiskelija.nimi}">opiskelijan nimi</span> 
-                <a th:href="${'/opiskelijat/' + opiskelija.id}">linkki</a>
+            <li th:each="raakaaine: ${raakaaineetjarjestetty}">
+                 <a th:href="@{'~/raakaaine/' + ${raakaaine.id}}">
+                    <span th:text="${raakaaine.nimi}">raakaaineen nimi</span>
+                </a>
+                <form method="POST" action="/raakaaine/delete">
+                    <input type="hidden" name="id" th:value="${raakaaine.id}"/>
+                    <input type="submit" value="Poista"/>
+                </form>
             </li>
         </ol>
+        
+        <h3>Lisää raaka-aineita smoothieen</h3>
+        
+        <form method="POST" action="/create/smoothieraakaaine2">
+            <span>Smoothien nimi:  (Huom! tulee olla uniikki)</span>
+            <select name="smoothie_id" size="6">
+                <option th:each="smoothie: ${smoothiet}" th:value="${smoothie.id}" 
+                        th:text="${smoothie.nimi}">smoothien nimi</option>
+            </select><br/>
+            
+            <span>Raaka-aineen nimi</span>
+            <select>
+                <option th:each="raakaaine: ${raakaaineet}" th:value="${raakaaine.id}"
+                        th:text="${raakaaine.nimi}">raakaaineen nimi</option>
+            </select><br/>
+            
+            <span>Järjestys</span>
+            <select name="jarjestys" size="6">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+            
+            <span>Määrä</span>
+            <input type="text" name="maara"/><br/>
+            
+            <span>Ohje</span>
+            <textarea name="ohje" rows="10" cols="30"></textarea><br/>
+            <br/>
+            <input type="submit" value="Lisää raaka-aine"/>
+        </form>
     </body>
 </html>

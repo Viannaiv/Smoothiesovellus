@@ -10,6 +10,8 @@ import tikape.runko.dao.RaakaAineDao;
 import tikape.runko.dao.SmoothieDao;
 import tikape.runko.dao.SmoothieRaakaAineDao;
 import tikape.runko.domain.RaakaAine;
+import tikape.runko.domain.Smoothie;
+import tikape.runko.domain.SmoothieRaakaAine;
 
 public class Main {
 //    Remember to trim names
@@ -41,13 +43,21 @@ public class Main {
         
         Spark.post("/raakaaineet", (req, res) -> { 
             String nimi = req.queryParams("nimi").trim();
-            RaakaAine ra = new RaakaAine(0, nimi);
+            RaakaAine ra = new RaakaAine(-1, nimi);
             System.out.println("Lisätään raaka-aine " + nimi);
             raDao.saveOrUpdate(ra);
             
             res.redirect("/raakaaineet");
             return "";
         });
+        
+        Spark.get("/smoothiet", (req, res) -> { 
+            HashMap map = new HashMap<>();
+            map.put("smoothiet", sDao.findAll());
+            map.put("raakaaineet", raDao.findAllAlphabetically());
+            
+            return new ModelAndView(map, "smoothiet");
+        }, new ThymeleafTemplateEngine());
         
         Spark.post("/raakaaine/delete", (req, res) -> { 
             int id = Integer.parseInt(req.queryParams("id"));
@@ -60,9 +70,68 @@ public class Main {
             return "";
         });
         
+        Spark.post("/smoothie/delete", (req, res) -> { 
+            int id = Integer.parseInt(req.queryParams("id"));
+            System.out.println("Poistetaan smooothie " + id);
+            
+            sDao.delete(id);
+            sraDao.deleteWithSmoothieID(id);
+            
+            res.redirect("/smoothiet");
+            return "";
+        });
         
+        Spark.post("/create/smoothie", (req, res) -> {
+            String nimi = req.queryParams("nimi").trim();
+            Smoothie s = new Smoothie(-1, nimi);
+            System.out.println("Luodaan smoothie " + nimi);
+            sDao.saveOrUpdate(s);
+            
+            res.redirect("/smoothiet");
+            return "";
+        });
         
-
+        Spark.post("/create/smoothieraakaaine", (req, res) -> {
+            int smoothieID = Integer.parseInt(req.queryParams("smoothie_id"));
+            int raakaAineID = Integer.parseInt(req.queryParams("raaka_aine_id"));
+            int jarjestys = Integer.parseInt(req.queryParams("jarjestys"));
+            String maara = req.queryParams("maara").trim();
+            String ohje = req.queryParams("ohje").trim();
+            
+            SmoothieRaakaAine sra = new SmoothieRaakaAine(raakaAineID, smoothieID,
+                    jarjestys, maara, ohje);
+            sraDao.saveOrUpdate(sra);
+            
+            res.redirect("/smoothiet");
+            return "";
+        });
+        
+        Spark.post("/create/smoothieraakaaine", (req, res) -> {
+            int smoothieID = Integer.parseInt(req.queryParams("smoothie_id"));
+            int raakaAineID = Integer.parseInt(req.queryParams("raaka_aine_id"));
+            int jarjestys = Integer.parseInt(req.queryParams("jarjestys"));
+            String maara = req.queryParams("maara").trim();
+            String ohje = req.queryParams("ohje").trim();
+            
+            SmoothieRaakaAine sra = new SmoothieRaakaAine(raakaAineID, smoothieID,
+                    jarjestys, maara, ohje);
+            sraDao.saveOrUpdate(sra);
+            
+            res.redirect("/smoothie");
+            return "";
+        });
+        
+        Spark.get("/smoothie/:id", (req, res) -> {
+            int id = Integer.parseInt(req.params("id"));
+            HashMap map = new HashMap<>();
+            map.put("smoothie", sDao.findOne(id));
+            map.put("raakaaineetjarjestetty", sraDao.smoothieRaakaAineListInOrder(id));
+            map.put("raakaaineet", raDao.findAll());
+            map.put("smoothiet", sDao.findAll());
+            
+            return new ModelAndView(map, "smoothie");
+        }, new ThymeleafTemplateEngine());
+        
 //        get("/", (req, res) -> {
 //            HashMap map = new HashMap<>();
 //            map.put("viesti", "tervehdys");
