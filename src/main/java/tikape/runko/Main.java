@@ -23,9 +23,6 @@ public class Main {
         RaakaAineDao raDao = new RaakaAineDao(database);
         SmoothieDao sDao = new SmoothieDao(database);
         SmoothieRaakaAineDao sraDao = new SmoothieRaakaAineDao(database);
-        
-//        tarvitaan / /smoothie /raakaaineet smoothie+smoothieid ja 
-//          smoothiet ja raakaaine jossa tilasto /delete/ useampi.
 
         Spark.get("/", (req, res) -> {
             HashMap map = new HashMap<>();
