@@ -13,13 +13,12 @@
             <li th:each="smoothie: ${smoothiet}">
                 <a th:href="@{'~/smoothie/' + ${smoothie.id}}">
                     <span th:text="${smoothie.nimi}">smoothien nimi</span>
-                </a>
+                </a>   
             </li>
-        </ul><br/>
-        
-        <h3>Luo ja tarkastele</h3>
-        <a href="/smoothiet">Luo uusi smoothie</a><br/>
-        <a href="/raakaaineet">Raaka-aineet ja niiden luonti</a>
-        
+        </ul>
     </body>
 </html>
+
+<a th:href="@{'~/smoothie/' + ${smoothie.id}}">
+                    <span th:text="${smoothie.nimi}">smoothien nimi</span>
+                </a>

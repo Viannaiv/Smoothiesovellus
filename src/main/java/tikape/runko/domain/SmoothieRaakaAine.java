@@ -16,6 +16,7 @@ public class SmoothieRaakaAine {
     private int jarjestys;
     private String maara;
     private String ohje;
+//    lisaa kaytossa?
 
     public SmoothieRaakaAine(int raakaAineID, int smoothieID, int jarjestys, String maara, String ohje) {
         this.raakaAineID = raakaAineID;

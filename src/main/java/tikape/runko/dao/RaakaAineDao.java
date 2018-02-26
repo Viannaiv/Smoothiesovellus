@@ -3,9 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tikape.runko.database;
+package tikape.runko.dao;
+import tikape.runko.dao.Dao;
 import java.sql.*;
 import java.util.*;
+import tikape.runko.database.Database;
 import tikape.runko.domain.RaakaAine;
 
 /**
@@ -44,7 +46,7 @@ public class RaakaAineDao implements Dao<RaakaAine, Integer> {
     public RaakaAine findByName(String nimi) throws SQLException {
         Connection conn = database.getConnection();
         PreparedStatement stmt = conn.prepareStatement("SELECT * FROM RaakaAine "
-                + "WHERE nimi = '?'");
+                + "WHERE nimi = ?");
         stmt.setString(1, nimi);
         
         ResultSet rs = stmt.executeQuery();
@@ -65,6 +67,26 @@ public class RaakaAineDao implements Dao<RaakaAine, Integer> {
     public List<RaakaAine> findAll() throws SQLException {
         Connection conn = database.getConnection();
         PreparedStatement stmt = conn.prepareStatement("SELECT * FROM RaakaAine");
+        
+        ResultSet rs = stmt.executeQuery();
+        List<RaakaAine> raakaaineet = new ArrayList<>();
+        
+        while(rs.next()) {
+            RaakaAine ra = new RaakaAine(rs.getInt("id"), rs.getString("nimi"));
+            raakaaineet.add(ra);
+        }
+        
+        rs.close();
+        stmt.close();
+        conn.close();
+        
+        return raakaaineet;
+    }
+    
+    public List<RaakaAine> findAllAlphabetically() throws SQLException {
+        Connection conn = database.getConnection();
+        PreparedStatement stmt = conn.prepareStatement("SELECT * FROM RaakaAine "
+                + "ORDER BY nimi");
         
         ResultSet rs = stmt.executeQuery();
         List<RaakaAine> raakaaineet = new ArrayList<>();
@@ -106,7 +128,14 @@ public class RaakaAineDao implements Dao<RaakaAine, Integer> {
         
         Connection conn = database.getConnection();
         PreparedStatement stmt = conn.prepareStatement("INSERT INTO RaakaAine "
-                + "(nimi) VALUES ('" + ra.getNimi()+ "')");
+                + "(nimi) VALUES (?)");
+        stmt.setString(1, ra.getNimi());
+        
+        stmt.executeUpdate();
+        
+        stmt.close();
+        conn.close();
+        
     }
     
 }

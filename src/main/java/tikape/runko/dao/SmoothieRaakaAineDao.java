@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tikape.runko.database;
+package tikape.runko.dao;
 import java.sql.*;
 import java.util.*;
+import tikape.runko.database.Database;
 import tikape.runko.domain.SmoothieRaakaAine;
 
 /**
@@ -71,24 +72,6 @@ public class SmoothieRaakaAineDao implements Dao<SmoothieRaakaAine, Integer> {
         
     }
     
-    public int smoothiesContainingRaakaAine(Integer raakaAineID) throws SQLException {
-        Connection conn = database.getConnection();
-        PreparedStatement stmt = conn.prepareStatement("SELECT COUNT(DISTINCT smoothie_id) "
-                + "AS lukumaara FROM SmoothieRaakaAine WHERE raaka_aine_id = ?");
-        stmt.setInt(1, raakaAineID);
-        
-        ResultSet rs = stmt.executeQuery();
-        
-        rs.next();
-        int lkm = rs.getInt("lukumaara");
-        
-        rs.close();
-        stmt.close();
-        conn.close();
-        
-        return lkm;
-    }
-
     @Override
     public void delete(Integer key) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -110,7 +93,7 @@ public class SmoothieRaakaAineDao implements Dao<SmoothieRaakaAine, Integer> {
     
     public void deleteWithSmoothieID(Integer smoothieID) throws SQLException {
         Connection conn = database.getConnection();
-        PreparedStatement stmt = conn.prepareStatement("DELETE * FROM SmoothieRaakaAine "
+        PreparedStatement stmt = conn.prepareStatement("DELETE FROM SmoothieRaakaAine "
                 + "WHERE smoothie_id = ?");
         stmt.setInt(1, smoothieID);
         
@@ -123,7 +106,7 @@ public class SmoothieRaakaAineDao implements Dao<SmoothieRaakaAine, Integer> {
     
     public void deleteWithRaakaAineID(Integer raakaAineID) throws SQLException {
         Connection conn = database.getConnection();
-        PreparedStatement stmt = conn.prepareStatement("DELETE * FROM SmoothieRaakaAine "
+        PreparedStatement stmt = conn.prepareStatement("DELETE FROM SmoothieRaakaAine "
                 + "WHERE raaka_aine_id = ?");
         stmt.setInt(1, raakaAineID);
         
@@ -159,8 +142,28 @@ public class SmoothieRaakaAineDao implements Dao<SmoothieRaakaAine, Integer> {
         conn.close();
         
     }
+    
+     public int smoothiesContainingRaakaAine(Integer raakaAineID) throws SQLException {
+        Connection conn = database.getConnection();
+        PreparedStatement stmt = conn.prepareStatement("SELECT COUNT(DISTINCT smoothie_id) "
+                + "AS lukumaara FROM SmoothieRaakaAine WHERE raaka_aine_id = ?");
+        stmt.setInt(1, raakaAineID);
+        
+        ResultSet rs = stmt.executeQuery();
+        
+        rs.next();
+        int lkm = rs.getInt("lukumaara");
+        
+        rs.close();
+        stmt.close();
+        conn.close();
+        
+        return lkm;
+    }
+//     miten tilastot hoidetaan...
+
     //muuta nimi
-    public List<SmoothieRaakaAine> smoothieKohtainenListaJarjestyksessa(Integer smoothieID) throws SQLException {
+    public List<SmoothieRaakaAine> smoothieRaakaAineListInOrder(Integer smoothieID) throws SQLException {
         Connection conn = database.getConnection();
         PreparedStatement stmt = conn.prepareStatement("SELECT * FROM SmoothieRaakaAine "
                 + "WHERE smoothie_id = ? ORDER BY jarjestys");

@@ -3,9 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tikape.runko.database;
+package tikape.runko.dao;
+import tikape.runko.dao.Dao;
 import java.sql.*;
 import java.util.*;
+import tikape.runko.database.Database;
 import tikape.runko.domain.Smoothie;
 
 /**
@@ -45,7 +47,7 @@ public class SmoothieDao implements Dao<Smoothie, Integer> {
     public Smoothie findByName(String nimi) throws SQLException {
         Connection conn = database.getConnection();
         PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Smoothie "
-                + "WHERE nimi = '?'");
+                + "WHERE nimi = ?");
         stmt.setString(1, nimi);
         
         ResultSet rs = stmt.executeQuery();
@@ -80,6 +82,26 @@ public class SmoothieDao implements Dao<Smoothie, Integer> {
         
         return smoothiet;
     }
+    
+    public List<Smoothie> findAllAlphabetically() throws SQLException {
+        Connection conn = database.getConnection();
+        PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Smoothie "
+                + "ORDER BY nimi");
+        
+        ResultSet rs = stmt.executeQuery();
+        List<Smoothie> smoothiet = new ArrayList<>();
+        if(rs.next()) {
+            Smoothie s = new Smoothie(rs.getInt("id"), rs.getString("nimi"));
+            smoothiet.add(s);
+        }
+        
+        rs.close();
+        stmt.close();
+        conn.close();
+        
+        return smoothiet;
+    }
+//    Tuleeko käytettyä? poista jos ei
 
     @Override
     public void delete(Integer key) throws SQLException {
@@ -106,7 +128,7 @@ public class SmoothieDao implements Dao<Smoothie, Integer> {
         
         Connection conn = database.getConnection();
         PreparedStatement stmt = conn.prepareStatement("INSERT INTO Smoothie "
-                + "(nimi) VALUES ('?')");
+                + "(nimi) VALUES (?)");
         stmt.setString(1, smoothie.getNimi());
         
         stmt.executeUpdate();
