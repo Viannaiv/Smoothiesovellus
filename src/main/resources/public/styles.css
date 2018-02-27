@@ -16,12 +16,27 @@ a:hover {
 }
 
 ol li {
-    background: linear-gradient(lightpink, lightblue);
     margin-left: 30px;
 }
 
 ul li {
-    background: linear-gradient(lightpink, lightblue);
     margin-left: 30px;
     margin: 5px;
+} 
+
+input {
+    background: linear-gradient(lightpink, lightblue);
+    border: 2px solid blueviolet;
+}
+
+textarea {
+    box-sizing: border-box;
+    border: 2px solid blueviolet;
+    background:  linear-gradient(lightpink, lightblue);
+    resize: none;
+} 
+
+select {
+    border: 2px solid blueviolet;
+    background: linear-gradient(lightpink, lightblue);
 } 
