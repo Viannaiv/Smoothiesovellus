@@ -8,6 +8,7 @@ import java.sql.*;
 import java.util.*;
 import tikape.runko.database.Database;
 import tikape.runko.domain.SmoothieRaakaAine;
+import tikape.runko.domain.RaakaAine;
 
 /**
  *
@@ -163,10 +164,12 @@ public class SmoothieRaakaAineDao implements Dao<SmoothieRaakaAine, Integer> {
 //     miten tilastot hoidetaan...
 
     //muuta nimi
-    public List<SmoothieRaakaAine> smoothieRaakaAineListInOrder(Integer smoothieID) throws SQLException {
+    public List<SmoothieRaakaAine> RaakaAineListInOrderForSmoothie(Integer smoothieID) throws SQLException {
         Connection conn = database.getConnection();
-        PreparedStatement stmt = conn.prepareStatement("SELECT * FROM SmoothieRaakaAine "
-                + "WHERE smoothie_id = ? ORDER BY jarjestys");
+        PreparedStatement stmt = conn.prepareStatement("SELECT * "
+                + "FROM RaakaAine, SmoothieRaakaAine "
+                + "WHERE id = raaka_aine_id "
+                + "AND smoothie_id = ? ORDER BY jarjestys");
         stmt.setInt(1, smoothieID);
         
         ResultSet rs = stmt.executeQuery();
@@ -176,9 +179,10 @@ public class SmoothieRaakaAineDao implements Dao<SmoothieRaakaAine, Integer> {
             SmoothieRaakaAine sra = new SmoothieRaakaAine(rs.getInt("raaka_aine_id"), 
                     rs.getInt("smoothie_id"), rs.getInt("jarjestys"),
                     rs.getString("maara"), rs.getString("ohje"));
+            sra.setNimi(rs.getString("nimi"));
             srat.add(sra);
         }
-        
+    
         rs.close();
         stmt.close();
         conn.close();

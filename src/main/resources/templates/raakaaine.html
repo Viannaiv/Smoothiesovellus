@@ -9,6 +9,11 @@
     <body>
         <h1><span th:text="${raakaaine.nimi}">Raaka-aineen nimi</span></h1>
 
-        <p>tähän tilasto. Olet saapunut opiskelijan <span th:text="${opiskelija.nimi}">opiskelija</span> henkilökohtaiselle sivulle.</p>
+        <p>
+            <span>Smoothieita, joissa </span>
+            <span th:text="${raakaaine.nimi}"></span>
+            <span> on raaka-aineena on yhteensä </span>
+            <span th:text="${tilasto}">tilasto</span>
+        </p>
     </body>
 </html>

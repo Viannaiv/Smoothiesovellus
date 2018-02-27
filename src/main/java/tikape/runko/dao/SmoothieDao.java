@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package tikape.runko.dao;
-import tikape.runko.dao.Dao;
 import java.sql.*;
 import java.util.*;
 import tikape.runko.database.Database;
@@ -71,7 +70,7 @@ public class SmoothieDao implements Dao<Smoothie, Integer> {
         
         ResultSet rs = stmt.executeQuery();
         List<Smoothie> smoothiet = new ArrayList<>();
-        if(rs.next()) {
+        while(rs.next()) {
             Smoothie s = new Smoothie(rs.getInt("id"), rs.getString("nimi"));
             smoothiet.add(s);
         }

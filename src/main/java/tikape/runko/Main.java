@@ -48,6 +48,15 @@ public class Main {
             return "";
         });
         
+        Spark.get("/raakaaine/:id", (req, res) -> {
+            int id = Integer.parseInt(req.params("id"));
+            HashMap map = new HashMap<>();
+            map.put("raakaaine", raDao.findOne(id));
+            map.put("tilasto", sraDao.smoothiesContainingRaakaAine(id));
+            
+            return new ModelAndView(map, "raakaaine");
+        }, new ThymeleafTemplateEngine());
+        
         Spark.get("/smoothiet", (req, res) -> { 
             HashMap map = new HashMap<>();
             map.put("smoothiet", sDao.findAll());
@@ -78,6 +87,17 @@ public class Main {
             return "";
         });
         
+        Spark.post("/smoothie/smoothieraakaaine/delete", (req, res) -> {
+            int rID = Integer.parseInt(req.queryParams("raakaAineID"));
+            int sID = Integer.parseInt(req.queryParams("smoothieID"));
+            System.out.println("Poistetaan raaka-aine " + rID + " smoothiesta " + sID);
+            
+            sraDao.delete(rID, sID);
+ 
+            res.redirect("/smoothie/" + sID);
+            return "";
+        });
+        
         Spark.post("/create/smoothie", (req, res) -> {
             String nimi = req.queryParams("nimi").trim();
             Smoothie s = new Smoothie(-1, nimi);
@@ -88,12 +108,14 @@ public class Main {
             return "";
         });
         
-        Spark.post("/create/smoothieraakaaine", (req, res) -> {
-            int smoothieID = Integer.parseInt(req.queryParams("smoothie_id"));
-            int raakaAineID = Integer.parseInt(req.queryParams("raaka_aine_id"));
+        Spark.post("/smoothiet/create/smoothieraakaaine", (req, res) -> {
+            int smoothieID = Integer.parseInt(req.queryParams("smoothieID"));
+            int raakaAineID = Integer.parseInt(req.queryParams("raakaAineID"));
             int jarjestys = Integer.parseInt(req.queryParams("jarjestys"));
             String maara = req.queryParams("maara").trim();
             String ohje = req.queryParams("ohje").trim();
+            System.out.println("Luodaan smoothieraaka-aine " + raakaAineID +
+                     " smoothieen " + smoothieID);
             
             SmoothieRaakaAine sra = new SmoothieRaakaAine(raakaAineID, smoothieID,
                     jarjestys, maara, ohje);
@@ -103,18 +125,21 @@ public class Main {
             return "";
         });
         
-        Spark.post("/create/smoothieraakaaine", (req, res) -> {
-            int smoothieID = Integer.parseInt(req.queryParams("smoothie_id"));
-            int raakaAineID = Integer.parseInt(req.queryParams("raaka_aine_id"));
+        Spark.post("/smoothie/create/smoothieraakaaine", (req, res) -> {
+            int smoothieID = Integer.parseInt(req.queryParams("smoothieID"));
+            int raakaAineID = Integer.parseInt(req.queryParams("raakaAineID"));
             int jarjestys = Integer.parseInt(req.queryParams("jarjestys"));
             String maara = req.queryParams("maara").trim();
             String ohje = req.queryParams("ohje").trim();
+            
+            System.out.println("Luodaan smoothieraaka-aine " + raakaAineID +
+                    " smoothieen " + smoothieID);
             
             SmoothieRaakaAine sra = new SmoothieRaakaAine(raakaAineID, smoothieID,
                     jarjestys, maara, ohje);
             sraDao.saveOrUpdate(sra);
             
-            res.redirect("/smoothie");
+            res.redirect("/smoothie/" + smoothieID);
             return "";
         });
         
@@ -122,9 +147,9 @@ public class Main {
             int id = Integer.parseInt(req.params("id"));
             HashMap map = new HashMap<>();
             map.put("smoothie", sDao.findOne(id));
-            map.put("raakaaineetjarjestetty", sraDao.smoothieRaakaAineListInOrder(id));
             map.put("raakaaineet", raDao.findAll());
             map.put("smoothiet", sDao.findAll());
+            map.put("raakaaineetjarjestetty", sraDao.RaakaAineListInOrderForSmoothie(id));
             
             return new ModelAndView(map, "smoothie");
         }, new ThymeleafTemplateEngine());

@@ -16,7 +16,7 @@ public class SmoothieRaakaAine {
     private int jarjestys;
     private String maara;
     private String ohje;
-//    lisaa kaytossa?
+    private String nimi; /*Hyödynnetään yhdessä metodissa setterin avulla*/
 
     public SmoothieRaakaAine(int raakaAineID, int smoothieID, int jarjestys, String maara, String ohje) {
         this.raakaAineID = raakaAineID;
@@ -24,6 +24,13 @@ public class SmoothieRaakaAine {
         this.jarjestys = jarjestys;
         this.maara = maara;
         this.ohje = ohje;
+        
+        if(this.ohje == null){
+            this.ohje = " ";
+        }
+        if(this.maara == null) {
+            this.maara = "omavalintainen";
+        }
     }
 
     public int getRaakaAineID() {
@@ -65,5 +72,15 @@ public class SmoothieRaakaAine {
     public void setOhje(String ohje) {
         this.ohje = ohje;
     }
+
+    public String getNimi() {
+        return nimi;
+    }
+
+    public void setNimi(String nimi) {
+        this.nimi = nimi;
+    }
+    
+    
 
 }

@@ -11,7 +11,9 @@
 
         <ul>
             <li th:each="raakaaine: ${raakaaineet}">
-                <span th:text="${raakaaine.nimi}">raakaaineen nimi</span> 
+                <a th:href="@{'~/raakaaine/' + ${raakaaine.id}}">
+                    <span th:text="${raakaaine.nimi}">raakaaineen nimi</span> 
+                </a>
                 <form method="POST" action="/raakaaine/delete">
                     <input type="hidden" name="id" th:value="${raakaaine.id}"/>
                     <input type="submit" value="Poista"/>   
@@ -25,8 +27,9 @@
             <span>Nimi: (Huom! nimen tulee olla uniikki)</span><br/>
             <input type="text" name="nimi"/><br/><br/>
             <input type="submit" value="Luo raaka-aine"/>
-        </form><br/>
+        </form><br/><br/>
         
+        <a href="/smoothiet">Siirry smoothielistaan</a><br/>
         <a href="/">Palaa aloitussivulle</a>
         
     </body>
