@@ -3,12 +3,12 @@
 
     <head>
         <title>Smoothiesovellus</title>
-        <meta charset="utf-8" />
+        <meta charset="ISO-8859-1" />
+        <link rel="stylesheet" href="/styles.css" th:href="@{~/styles.css}" type="text/css" />
     </head>
 
     <body>
         <h2><span th:text="${smoothie.nimi}">Smoothien nimi</span></h2>
-        <span>oisko t√§nne kans luo raaka-aine ja sit eri uudelleen ohjaus loppun?</span><br/>
         
         <ol>
             <li th:each="raakaaine: ${raakaaineetjarjestetty}">
@@ -22,7 +22,7 @@
                 </form>
                 <ul>
                     <li>
-                        <span>M√§√§r√§: </span>
+                        <span>M‰‰r‰: </span>
                         <span th:text="${raakaaine.maara}">maara</span>
                     </li>
                     <li>
@@ -34,7 +34,7 @@
         </ol><br/>
         
         <h3>
-            <span>Lis√§√§ raaka-aineita smoothieen</span>
+            <span>Lis‰‰ raaka-aineita smoothieen</span>
             <span th:text="${smoothie.nimi}">Smoothien nimi</span>
         </h3>
         
@@ -47,7 +47,7 @@
                         th:text="${raakaaine.nimi}">raakaaineen nimi</option>
             </select><br/><br/>
             
-            <span>J√§rjestys:</span><br/>
+            <span>J‰rjestys:</span><br/>
             <select name="jarjestys" size="4">
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -61,13 +61,13 @@
                 <option value="10">10</option>
             </select><br/><br/>
             
-            <span>M√§√§r√§: (esim. 1 dl)</span><br/>
+            <span>M‰‰r‰: (esim. 1 dl)</span><br/>
             <input type="text" name="maara"/><br/><br/>
             
             <span>Ohje:</span><br/>
             <textarea name="ohje" rows="6" cols="15"></textarea><br/>
             <br/>
-            <input type="submit" value="Lis√§√§ raaka-aine"/>
+            <input type="submit" value="Lis‰‰ raaka-aine"/>
         </form><br/><br/>
         
         <a href="/smoothiet">Smoothiet</a><br/>

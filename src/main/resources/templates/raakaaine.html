@@ -3,17 +3,22 @@
 
     <head>
         <title>Smoothiesovellus</title>
-        <meta charset="utf-8" />
+        <meta charset="ISO-8859-1"/>
+        <link rel="stylesheet" href="/styles.css" th:href="@{~/styles.css}" type="text/css" />
     </head>
 
     <body>
-        <h1><span th:text="${raakaaine.nimi}">Raaka-aineen nimi</span></h1>
+        <h2><span th:text="${raakaaine.nimi}">Raaka-aineen nimi</span></h2>
 
         <p>
             <span>Smoothieita, joissa </span>
             <span th:text="${raakaaine.nimi}"></span>
-            <span> on raaka-aineena on yhteens√§ </span>
+            <span> on raaka-aineena on yhteens‰ </span>
             <span th:text="${tilasto}">tilasto</span>
-        </p>
+        </p><br/><br/>
+        
+        <a href="/raakaaineet">Luo ja tarkastele raaka-aineita</a><br/>
+        <a href="/smoothiet">Luo ja tarkastele smoothieita</a><br/><br/>
+        
     </body>
 </html>

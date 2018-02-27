@@ -1,0 +1,16 @@
+body {
+    background: linear-gradient(lightcoral, white);
+    background-repeat: repeat-x;
+}
+
+a:link {
+    color: purple;
+}
+
+a:visited {
+    color: mediumvioletred;
+}
+
+a:hover {
+    color: mediumorchid;
+}

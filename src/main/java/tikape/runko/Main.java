@@ -23,6 +23,8 @@ public class Main {
         RaakaAineDao raDao = new RaakaAineDao(database);
         SmoothieDao sDao = new SmoothieDao(database);
         SmoothieRaakaAineDao sraDao = new SmoothieRaakaAineDao(database);
+        
+        Spark.staticFileLocation("/public");
 
         Spark.get("/", (req, res) -> {
             HashMap map = new HashMap<>();

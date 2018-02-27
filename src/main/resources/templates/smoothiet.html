@@ -3,7 +3,8 @@
 
     <head>
         <title>Smoothiesovellus</title>
-        <meta charset="utf-8"/>
+        <meta charset="ISO-8859-1"/>
+        <link rel="stylesheet" href="/styles.css" th:href="@{~/styles.css}" type="text/css" />
     </head>
 
     <body>
@@ -29,7 +30,7 @@
             <input type="submit" value="Luo smoothie"/>
         </form><br/>
         
-        <h3>Lis√§√§ raaka-aineita smoothieen</h3>
+        <h3>Lis‰‰ raaka-aineita smoothieen</h3>
         
         <form method="POST" action="/smoothiet/create/smoothieraakaaine">
             <span>Smoothien nimi:</span><br/>
@@ -44,7 +45,7 @@
                         th:text="${raakaaine.nimi}">raakaaineen nimi</option>
             </select><br/><br/>
             
-            <span>J√§rjestys:</span><br/>
+            <span>J‰rjestys:</span><br/>
             <select name="jarjestys" size="4">
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -58,17 +59,17 @@
                 <option value="10">10</option>
             </select><br/><br/>
             
-            <span>M√§√§r√§:</span><br/>
+            <span>M‰‰r‰:</span><br/>
             <input type="text" name="maara"/><br/><br/>
             
             <span>Ohje:</span><br/>
             <textarea name="ohje" rows="6" cols="15"></textarea><br/>
             <br/>
-            <input type="submit" value="Lis√§√§ raaka-aine"/>
+            <input type="submit" value="Lis‰‰ raaka-aine"/>
         </form><br/><br/>
         
-        <a href="/">Palaa aloitussivulle</a><br/>
-        <a href="/raakaaineet">Tarkastele ja luo raakaaineita</a>
+        <a href="/raakaaineet">Tarkastele ja luo raakaaineita</a><br/>
+        <a href="/">Palaa aloitussivulle</a>
         <br/><br/>
         
     </body>
