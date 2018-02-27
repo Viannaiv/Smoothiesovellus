@@ -14,3 +14,14 @@ a:visited {
 a:hover {
     color: mediumorchid;
 }
+
+ol li {
+    background: linear-gradient(lightpink, lightblue);
+    margin-left: 30px;
+}
+
+ul li {
+    background: linear-gradient(lightpink, lightblue);
+    margin-left: 30px;
+    margin: 5px;
+} 
