@@ -3,8 +3,9 @@
 
     <head>
         <title>Smoothiesovellus</title>
-        <meta charset="ISO-8859-1" />
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
         <link rel="stylesheet" href="/styles.css" th:href="@{~/styles.css}" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Karma" rel="stylesheet"/> 
     </head>
 
     <body>
@@ -25,7 +26,7 @@
         <h3>Luo uusi raaka_aine</h3>
         
         <form method="POST" action="/raakaaineet">
-            <span>Nimi: (Huom! nimen tulee olla uniikki)</span><br/>
+            <span id="s6">Nimi: (Huom! nimen tulee olla uniikki)</span><br/>
             <input type="text" name="nimi"/><br/><br/>
             <input type="submit" value="Luo raaka-aine"/>
         </form><br/><br/>

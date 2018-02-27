@@ -39,16 +39,13 @@ public class Database {
         ArrayList<String> lista = new ArrayList<>();
 //laita tänne sqlitekomennot niin toimii. muuta postgre muotoon lopuksi.
         // tietokantataulujen luomiseen tarvittavat komennot suoritusjärjestyksessä
-//        lista.add("CREATE TABLE Opiskelija (id integer PRIMARY KEY, nimi varchar(255));");
-//        lista.add("INSERT INTO Opiskelija (nimi) VALUES ('Platon');");
-//        lista.add("INSERT INTO Opiskelija (nimi) VALUES ('Aristoteles');");
-//        lista.add("INSERT INTO Opiskelija (nimi) VALUES ('Homeros');");
         
 //        Luodaan tarvittavat SQLITE komennot
-        lista.add("CREATE TABLE RaakaAine(id integer PRIMARY KEY, nimi varchar(200));");
-//        lista.add("CREATE TABLE Smoothie (id integer PRIMARY KEY, nimi varchar(200));");
+                
+        lista.add("CREATE TABLE RaakaAine(id integer PRIMARY KEY, nimi varchar(30));");
+//        lista.add("CREATE TABLE Smoothie (id integer PRIMARY KEY, nimi varchar(30));");
 //        lista.add("CREATE TABLE SmoothieRaakaAine (raaka_aine_id integer, smoothie_id integer,"
-//                + " jarjestys integer, maara varchar(100), ohje varchar(200), "
+//                + " jarjestys integer, maara varchar(20), ohje varchar(200), "
 //                + "FOREIGN KEY (raaka_aine_id) REFERENCES RaakaAine(id), "
 //                + "FOREIGN KEY (smoothie_id) REFERENCES Smoothie(id));");
 
@@ -71,7 +68,7 @@ public class Database {
 //        lista.add("INSERT INTO SmoothieRaakaAine "
 //                + "(raaka_aine_id, smoothie_id, jarjestys, maara, ohje) VALUES "
 //                + "(4, 1, 4, '2 rkl', '');");
-        
+//        
 
         return lista;
     }

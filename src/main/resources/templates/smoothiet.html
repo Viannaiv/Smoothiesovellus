@@ -3,8 +3,9 @@
 
     <head>
         <title>Smoothiesovellus</title>
-        <meta charset="ISO-8859-1"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
         <link rel="stylesheet" href="/styles.css" th:href="@{~/styles.css}" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Karma" rel="stylesheet"/> 
     </head>
 
     <body>
@@ -25,48 +26,10 @@
         <h3>Luo uusi smoothie</h3>
         
         <form method="POST" action="/create/smoothie">
-            <span>Smoothien nimi:</span><br/>
+            <span id="s5">Smoothien nimi:  (Huom! tulee olla uniikki)</span><br/>
             <input type="text" name="nimi"/><br/><br/>
             <input type="submit" value="Luo smoothie"/>
         </form><br/>
-        
-        <h3>Lisää raaka-aineita smoothieen</h3>
-        
-        <form method="POST" action="/smoothiet/create/smoothieraakaaine">
-            <span>Smoothien nimi:</span><br/>
-            <select name="smoothieID" size="4">
-                <option th:each="smoothie: ${smoothiet}" th:value="${smoothie.id}" 
-                        th:text="${smoothie.nimi}">smoothien nimi</option>
-            </select><br/><br/>
-            
-            <span>Raaka-aineen nimi:</span><br/>
-            <select name="raakaAineID" size="4">
-                <option th:each="raakaaine: ${raakaaineet}" th:value="${raakaaine.id}"
-                        th:text="${raakaaine.nimi}">raakaaineen nimi</option>
-            </select><br/><br/>
-            
-            <span>Järjestys:</span><br/>
-            <select name="jarjestys" size="4">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
-            </select><br/><br/>
-            
-            <span>Määrä:</span><br/>
-            <input type="text" name="maara"/><br/><br/>
-            
-            <span>Ohje:</span><br/>
-            <textarea name="ohje" rows="6" cols="15"></textarea><br/>
-            <br/>
-            <input type="submit" value="Lisää raaka-aine"/>
-        </form><br/><br/>
         
         <a href="/raakaaineet">Tarkastele ja luo raakaaineita</a><br/>
         <a href="/">Palaa aloitussivulle</a>

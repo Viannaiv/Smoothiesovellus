@@ -1,6 +1,22 @@
-body {
-    background: linear-gradient(lightcoral, white);
-    background-repeat: repeat-x;
+
+html {
+    background: linear-gradient(to bottom, mistyrose 0%, silver 100%);
+    min-height: 100%;
+    background-attachment: fixed;
+    color: darkslategrey;
+    font-family: 'Karma', serif;
+}
+
+a {
+    margin-left: 25px;
+}
+
+h2 {
+    margin-left: 20px;
+}
+
+h3{
+    margin-left: 20px;
 }
 
 a:link {
@@ -16,27 +32,48 @@ a:hover {
 }
 
 ol li {
-    margin-left: 30px;
+    margin-left: 35px;
 }
 
 ul li {
-    margin-left: 30px;
-    margin: 5px;
+    margin-left: 35px;
 } 
 
 input {
-    background: linear-gradient(lightpink, lightblue);
-    border: 2px solid blueviolet;
+    background: linear-gradient(mistyrose, gainsboro);
+    border: 2px solid cadetblue;
+    color: darkslateblue;
+    margin-left: 25px;
+}
+
+input[type=submit] {
+    background: cadetblue;
+    border: 2px solid darkcyan;
+    color: mistyrose;
+    margin-left: 25px;
 }
 
 textarea {
     box-sizing: border-box;
-    border: 2px solid blueviolet;
-    background:  linear-gradient(lightpink, lightblue);
+    border: 2px solid cadetblue;
+    background:  linear-gradient(mistyrose, gainsboro);
     resize: none;
+    color: darkslateblue;
+    margin-left: 25px;
 } 
 
 select {
-    border: 2px solid blueviolet;
-    background: linear-gradient(lightpink, lightblue);
+    border: 2px solid cadetblue;
+    background: linear-gradient(mistyrose, gainsboro);
+    font-family: 'Karma', serif;
+    color: darkslateblue;
+    margin-left: 25px;
 } 
+
+span #s0, #s1, #s2, #s3, #s4, #s5, #s6 {
+    margin-left: 25px;
+}
+
+p {
+    margin-left: 25px;
+}

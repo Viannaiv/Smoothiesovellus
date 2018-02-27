@@ -3,12 +3,13 @@
 
     <head>
         <title>Smoothiesovellus</title>
-        <meta charset="ISO-8859-1"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
         <link rel="stylesheet" href="/styles.css" th:href="@{~/styles.css}" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Karma" rel="stylesheet"/> 
     </head>
 
     <body>
-        <h2><span th:text="${raakaaine.nimi}">Raaka-aineen nimi</span></h2>
+        <h2><span th:text="${raakaaine.nimi}">Raaka-aineen nimi</span></h2><br/>
 
         <p>
             <span>Smoothieita, joissa </span>
@@ -19,6 +20,7 @@
         
         <a href="/raakaaineet">Luo ja tarkastele raaka-aineita</a><br/>
         <a href="/smoothiet">Luo ja tarkastele smoothieita</a><br/><br/>
+        <a href="/">Palaa aloitussivulle</a>
         
     </body>
 </html>

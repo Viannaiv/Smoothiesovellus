@@ -14,7 +14,6 @@ import tikape.runko.domain.Smoothie;
 import tikape.runko.domain.SmoothieRaakaAine;
 
 public class Main {
-//    Remember to trim names
 
     public static void main(String[] args) throws Exception {
         Database database = new Database("jdbc:sqlite:smoothie.db");
@@ -110,23 +109,6 @@ public class Main {
             return "";
         });
         
-        Spark.post("/smoothiet/create/smoothieraakaaine", (req, res) -> {
-            int smoothieID = Integer.parseInt(req.queryParams("smoothieID"));
-            int raakaAineID = Integer.parseInt(req.queryParams("raakaAineID"));
-            int jarjestys = Integer.parseInt(req.queryParams("jarjestys"));
-            String maara = req.queryParams("maara").trim();
-            String ohje = req.queryParams("ohje").trim();
-            System.out.println("Luodaan smoothieraaka-aine " + raakaAineID +
-                     " smoothieen " + smoothieID);
-            
-            SmoothieRaakaAine sra = new SmoothieRaakaAine(raakaAineID, smoothieID,
-                    jarjestys, maara, ohje);
-            sraDao.saveOrUpdate(sra);
-            
-            res.redirect("/smoothiet");
-            return "";
-        });
-        
         Spark.post("/smoothie/create/smoothieraakaaine", (req, res) -> {
             int smoothieID = Integer.parseInt(req.queryParams("smoothieID"));
             int raakaAineID = Integer.parseInt(req.queryParams("raakaAineID"));
@@ -136,6 +118,8 @@ public class Main {
             
             System.out.println("Luodaan smoothieraaka-aine " + raakaAineID +
                     " smoothieen " + smoothieID);
+            
+//            LUO TARKISTUS METODIT
             
             SmoothieRaakaAine sra = new SmoothieRaakaAine(raakaAineID, smoothieID,
                     jarjestys, maara, ohje);
@@ -156,25 +140,5 @@ public class Main {
             return new ModelAndView(map, "smoothie");
         }, new ThymeleafTemplateEngine());
         
-//        get("/", (req, res) -> {
-//            HashMap map = new HashMap<>();
-//            map.put("viesti", "tervehdys");
-//
-//            return new ModelAndView(map, "index");
-//        }, new ThymeleafTemplateEngine());
-//
-//        get("/opiskelijat", (req, res) -> {
-//            HashMap map = new HashMap<>();
-//            map.put("opiskelijat", opiskelijaDao.findAll());
-//
-//            return new ModelAndView(map, "opiskelijat");
-//        }, new ThymeleafTemplateEngine());
-//
-//        get("/opiskelijat/:id", (req, res) -> {
-//            HashMap map = new HashMap<>();
-//            map.put("opiskelija", opiskelijaDao.findOne(Integer.parseInt(req.params("id"))));
-//
-//            return new ModelAndView(map, "opiskelija");
-//        }, new ThymeleafTemplateEngine());
     }
 }

@@ -121,7 +121,7 @@ public class SmoothieDao implements Dao<Smoothie, Integer> {
     public void saveOrUpdate(Smoothie smoothie) throws SQLException {
         Smoothie s = findByName(smoothie.getNimi());
         
-        if(s != null) {
+        if(s != null || smoothie.getNimi().isEmpty()) {
             return;
         }
         

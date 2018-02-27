@@ -3,8 +3,9 @@
 
     <head>
         <title>Smoothiesovellus</title>
-        <meta charset="ISO-8859-1" />
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
         <link rel="stylesheet" href="/styles.css" th:href="@{~/styles.css}" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Karma" rel="stylesheet"/> 
     </head>
 
     <body>
@@ -15,11 +16,13 @@
                  <a th:href="@{'~/raakaaine/' + ${raakaaine.raakaAineID}}">
                     <span th:text="${raakaaine.nimi}">raakaaineen nimi</span>
                 </a>
+                
                 <form method="POST" action="/smoothie/smoothieraakaaine/delete">
                     <input type="hidden" name="raakaAineID" th:value="${raakaaine.raakaAineID}"/>
                     <input type="hidden" name="smoothieID" th:value="${raakaaine.smoothieID}"/>
                     <input type="submit" value="Poista"/>
                 </form>
+                
                 <ul>
                     <li>
                         <span>Määrä: </span>
@@ -41,13 +44,13 @@
         <form method="POST" action="/smoothie/create/smoothieraakaaine">
             <input type="hidden" name="smoothieID" th:value="${smoothie.id}"/>
             
-            <span>Raaka-aineen nimi:</span><br/>
+            <span id="s1">Raaka-aineen nimi:</span><br/>
             <select name="raakaAineID" size="4">
                 <option th:each="raakaaine: ${raakaaineet}" th:value="${raakaaine.id}"
                         th:text="${raakaaine.nimi}">raakaaineen nimi</option>
             </select><br/><br/>
             
-            <span>Järjestys:</span><br/>
+            <span id="s2">Järjestys:</span><br/>
             <select name="jarjestys" size="4">
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -61,11 +64,11 @@
                 <option value="10">10</option>
             </select><br/><br/>
             
-            <span>Määrä: (esim. 1 dl)</span><br/>
+            <span id="s3">Määrä: (esim. 1 dl)</span><br/>
             <input type="text" name="maara"/><br/><br/>
             
-            <span>Ohje:</span><br/>
-            <textarea name="ohje" rows="6" cols="15"></textarea><br/>
+            <span id="s4">Ohje:</span><br/>
+            <textarea name="ohje" rows="6" cols="20"></textarea><br/>
             <br/>
             <input type="submit" value="Lisää raaka-aine"/>
         </form><br/><br/>

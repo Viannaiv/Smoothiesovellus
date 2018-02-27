@@ -122,7 +122,7 @@ public class RaakaAineDao implements Dao<RaakaAine, Integer> {
     public void saveOrUpdate(RaakaAine ra) throws SQLException {
         RaakaAine raakaA = findByName(ra.getNimi());
         
-        if(raakaA != null) {
+        if(raakaA != null || ra.getNimi().isEmpty()) {
             return;
         }
         

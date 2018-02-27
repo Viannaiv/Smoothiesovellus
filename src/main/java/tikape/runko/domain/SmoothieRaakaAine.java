@@ -25,10 +25,10 @@ public class SmoothieRaakaAine {
         this.maara = maara;
         this.ohje = ohje;
         
-        if(this.ohje == null){
-            this.ohje = " ";
+        if(this.ohje.isEmpty()){
+            this.ohje = "-";
         }
-        if(this.maara == null) {
+        if(this.maara.isEmpty()) {
             this.maara = "omavalintainen";
         }
     }
