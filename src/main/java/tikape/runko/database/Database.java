@@ -45,7 +45,7 @@ public class Database {
         lista.add("CREATE TABLE RaakaAine(id integer PRIMARY KEY, nimi varchar(30));");
 //        lista.add("CREATE TABLE Smoothie (id integer PRIMARY KEY, nimi varchar(30));");
 //        lista.add("CREATE TABLE SmoothieRaakaAine (raaka_aine_id integer, smoothie_id integer,"
-//                + " jarjestys integer, maara varchar(20), ohje varchar(200), "
+//                + " jarjestys integer, maara varchar(20), ohje varchar(150), "
 //                + "FOREIGN KEY (raaka_aine_id) REFERENCES RaakaAine(id), "
 //                + "FOREIGN KEY (smoothie_id) REFERENCES Smoothie(id));");
 

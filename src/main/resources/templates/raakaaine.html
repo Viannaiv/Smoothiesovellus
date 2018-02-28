@@ -13,14 +13,21 @@
 
         <p>
             <span>Smoothieita, joissa </span>
-            <span th:text="${raakaaine.nimi}"></span>
+            <span th:text="${raakaaine.nimi}">raakaaineen nimi</span>
             <span> on raaka-aineena on yhteensä </span>
             <span th:text="${tilasto}">tilasto</span>
-        </p><br/><br/>
+            <span>.</span>
+        </p>
+        
+        <p>
+            <span>Smothieita on tällä hetkellä yhteensä </span>
+            <span th:text="${smoothieita}">yhteensä</span>
+            <span>.</span>
+        </p><br/><br/><br/>
         
         <a href="/raakaaineet">Luo ja tarkastele raaka-aineita</a><br/>
-        <a href="/smoothiet">Luo ja tarkastele smoothieita</a><br/><br/>
-        <a href="/">Palaa aloitussivulle</a>
+        <a href="/smoothiet">Luo ja tarkastele smoothieita</a><br/>
+        <a href="/">Palaa aloitussivulle</a><br/>
         
     </body>
 </html>

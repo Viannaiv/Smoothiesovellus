@@ -54,6 +54,7 @@ public class Main {
             HashMap map = new HashMap<>();
             map.put("raakaaine", raDao.findOne(id));
             map.put("tilasto", sraDao.smoothiesContainingRaakaAine(id));
+            map.put("smoothieita", sDao.countAllSmoothies());
             
             return new ModelAndView(map, "raakaaine");
         }, new ThymeleafTemplateEngine());

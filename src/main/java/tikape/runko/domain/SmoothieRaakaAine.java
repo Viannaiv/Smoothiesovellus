@@ -28,6 +28,7 @@ public class SmoothieRaakaAine {
         if(this.ohje.isEmpty()){
             this.ohje = "-";
         }
+        
         if(this.maara.isEmpty()) {
             this.maara = "omavalintainen";
         }

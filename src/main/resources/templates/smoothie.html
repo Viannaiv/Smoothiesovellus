@@ -45,13 +45,13 @@
             <input type="hidden" name="smoothieID" th:value="${smoothie.id}"/>
             
             <span id="s1">Raaka-aineen nimi:</span><br/>
-            <select name="raakaAineID" size="4">
+            <select name="raakaAineID" size="4" required="required">
                 <option th:each="raakaaine: ${raakaaineet}" th:value="${raakaaine.id}"
                         th:text="${raakaaine.nimi}">raakaaineen nimi</option>
             </select><br/><br/>
             
             <span id="s2">J‰rjestys:</span><br/>
-            <select name="jarjestys" size="4">
+            <select name="jarjestys" size="4" required="required">
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -64,12 +64,16 @@
                 <option value="10">10</option>
             </select><br/><br/>
             
-            <span id="s3">M‰‰r‰: (esim. 1 dl)</span><br/>
-            <input type="text" name="maara"/><br/><br/>
+            <span id="s3">M‰‰r‰:</span><br/>
+            <input type="text" name="maara" placeholder="esim. 1 dl" required="required"
+                    maxlength="20"/>
+            <br/><br/>
             
             <span id="s4">Ohje:</span><br/>
-            <textarea name="ohje" rows="6" cols="20"></textarea><br/>
-            <br/>
+            <textarea name="ohje" rows="6" cols="20" maxlength="100" 
+                      placeholder="max 100 merkki‰"></textarea>
+            <br/><br/>
+ 
             <input type="submit" value="Lis‰‰ raaka-aine"/>
         </form><br/><br/>
         
