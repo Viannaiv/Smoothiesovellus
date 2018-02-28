@@ -1,4 +1,4 @@
-# tikape-runko
+# Smoothiesovellus
 
 Smoothiesovellus, jossa on mahdollista tarkastella ja luoda smoothieita 
 ja raaka-aineita sekä lisätä raaka-aineita smoothieihin. 
