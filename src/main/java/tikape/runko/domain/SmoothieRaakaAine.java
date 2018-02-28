@@ -1,14 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package tikape.runko.domain;
 
-/**
- *
- * @author Vivianna
- */
+
 public class SmoothieRaakaAine {
     
     private int raakaAineID;
@@ -16,7 +9,7 @@ public class SmoothieRaakaAine {
     private int jarjestys;
     private String maara;
     private String ohje;
-    private String nimi; /*Hyödynnetään yhdessä metodissa setterin avulla*/
+    private String nimi;
 
     public SmoothieRaakaAine(int raakaAineID, int smoothieID, int jarjestys, String maara, String ohje) {
         this.raakaAineID = raakaAineID;
@@ -82,6 +75,4 @@ public class SmoothieRaakaAine {
         this.nimi = nimi;
     }
     
-    
-
 }

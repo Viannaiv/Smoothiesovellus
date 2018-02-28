@@ -1,18 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package tikape.runko.dao;
 import java.sql.*;
 import java.util.*;
 import tikape.runko.database.Database;
 import tikape.runko.domain.Smoothie;
 
-/**
- *
- * @author Vivianna
- */
+
 public class SmoothieDao implements Dao<Smoothie, Integer> {
     
     private Database database;
@@ -23,133 +16,177 @@ public class SmoothieDao implements Dao<Smoothie, Integer> {
 
     @Override
     public Smoothie findOne(Integer key) throws SQLException {
-        Connection conn = database.getConnection();
-        PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Smoothie "
-                + "WHERE id = ?");
-        stmt.setInt(1, key);
         
-        ResultSet rs = stmt.executeQuery();
-        
-        if(!rs.next()) {
-            return null;
+        try {
+            Connection conn = database.getConnection();
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Smoothie "
+                    + "WHERE id = ?");
+            stmt.setInt(1, key);
+            
+            ResultSet rs = stmt.executeQuery();
+            
+            if(rs.next()) {
+            
+                Smoothie s = new Smoothie(rs.getInt("id"), rs.getString("nimi"));
+
+                rs.close();
+                stmt.close();
+                conn.close();
+
+                return s;
+            }
+            
+        } catch (Exception ex) {
+            System.out.println("Error>>" + ex);
         }
         
-        Smoothie s = new Smoothie(rs.getInt("id"), rs.getString("nimi"));
-        
-        rs.close();
-        stmt.close();
-        conn.close();
-        
-        return s;
+        return null;
     }
     
     public Smoothie findByName(String nimi) throws SQLException {
-        Connection conn = database.getConnection();
-        PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Smoothie "
-                + "WHERE nimi = ?");
-        stmt.setString(1, nimi);
         
-        ResultSet rs = stmt.executeQuery();
-        if(!rs.next()){
-            return null;
+        try {
+            Connection conn = database.getConnection();
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Smoothie "
+                    + "WHERE nimi = ?");
+            stmt.setString(1, nimi);
+            
+            ResultSet rs = stmt.executeQuery();
+            if(rs.next()){
+            
+                Smoothie s = new Smoothie(rs.getInt("id"), rs.getString("nimi"));
+
+                rs.close();
+                stmt.close();
+                conn.close();
+
+                return s;
+            }
+            
+        } catch (Exception ex) {
+            System.out.println("Error>>" + ex);
         }
         
-        Smoothie s = new Smoothie(rs.getInt("id"), rs.getString("nimi"));
-        
-        rs.close();
-        stmt.close();
-        conn.close();
-        
-        return s;
+        return null;
     }
 
     @Override
     public List<Smoothie> findAll() throws SQLException {
-        Connection conn = database.getConnection();
-        PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Smoothie");
         
-        ResultSet rs = stmt.executeQuery();
-        List<Smoothie> smoothiet = new ArrayList<>();
-        while(rs.next()) {
-            Smoothie s = new Smoothie(rs.getInt("id"), rs.getString("nimi"));
-            smoothiet.add(s);
+        try {
+            Connection conn = database.getConnection();
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Smoothie");
+            
+            ResultSet rs = stmt.executeQuery();
+            List<Smoothie> smoothiet = new ArrayList<>();
+            while(rs.next()) {
+                Smoothie s = new Smoothie(rs.getInt("id"), rs.getString("nimi"));
+                smoothiet.add(s);
+            }
+            
+            rs.close();
+            stmt.close();
+            conn.close();
+            
+            return smoothiet;
+            
+        } catch (Exception ex) {
+            System.out.println("Error>>" + ex);
         }
         
-        rs.close();
-        stmt.close();
-        conn.close();
-        
-        return smoothiet;
+        return new ArrayList<>();
     }
     
     public List<Smoothie> findAllAlphabetically() throws SQLException {
-        Connection conn = database.getConnection();
-        PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Smoothie "
-                + "ORDER BY nimi");
-        
-        ResultSet rs = stmt.executeQuery();
-        List<Smoothie> smoothiet = new ArrayList<>();
-        if(rs.next()) {
-            Smoothie s = new Smoothie(rs.getInt("id"), rs.getString("nimi"));
-            smoothiet.add(s);
+        try {
+            Connection conn = database.getConnection();
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Smoothie "
+                    + "ORDER BY nimi");
+            
+            ResultSet rs = stmt.executeQuery();
+            List<Smoothie> smoothiet = new ArrayList<>();
+            if(rs.next()) {
+                Smoothie s = new Smoothie(rs.getInt("id"), rs.getString("nimi"));
+                smoothiet.add(s);
+            }
+            
+            rs.close();
+            stmt.close();
+            conn.close();
+            
+            return smoothiet;
+            
+        } catch (Exception ex) {
+            System.out.println("Error>>" + ex);
         }
         
-        rs.close();
-        stmt.close();
-        conn.close();
-        
-        return smoothiet;
+        return new ArrayList<>();
     }
-//    Tuleeko käytettyä? poista jos ei
 
     @Override
     public void delete(Integer key) throws SQLException {
-//        HUom tulee poistua myös Smoothieraakaaineesta mainissa todnäk
-        Connection conn = database.getConnection();
-        PreparedStatement stmt = conn.prepareStatement("DELETE FROM Smoothie "
-                + "WHERE id = ?");
-        stmt.setInt(1, key);
         
-        stmt.executeUpdate();
-        
-        stmt.close();
-        conn.close();
-        
+        try {
+            Connection conn = database.getConnection();
+            PreparedStatement stmt = conn.prepareStatement("DELETE FROM Smoothie "
+                    + "WHERE id = ?");
+            stmt.setInt(1, key);
+            
+            stmt.executeUpdate();
+            
+            stmt.close();
+            conn.close();
+            
+        } catch (Exception ex) {
+            System.out.println("Error>>" + ex);
+        }
     }
 
     @Override
     public void saveOrUpdate(Smoothie smoothie) throws SQLException {
-        Smoothie s = findByName(smoothie.getNimi());
-        
-        if(s != null || smoothie.getNimi().isEmpty()) {
-            return;
+       
+            Smoothie s = findByName(smoothie.getNimi());
+            
+            if(s != null || smoothie.getNimi().isEmpty()) {
+                return;
+            }
+            
+        try {
+            Connection conn = database.getConnection();
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO Smoothie "
+                    + "(nimi) VALUES (?)");
+            stmt.setString(1, smoothie.getNimi());
+            
+            stmt.executeUpdate();
+            
+            stmt.close();
+            conn.close();
+            
+        } catch (Exception ex) {
+            System.out.println("Error>>" + ex);
         }
-        
-        Connection conn = database.getConnection();
-        PreparedStatement stmt = conn.prepareStatement("INSERT INTO Smoothie "
-                + "(nimi) VALUES (?)");
-        stmt.setString(1, smoothie.getNimi());
-        
-        stmt.executeUpdate();
-        
-        stmt.close();
-        conn.close();
     }
     
     public int countAllSmoothies() throws SQLException {
-        Connection conn = database.getConnection();
-        PreparedStatement stmt = conn.prepareStatement("SELECT COUNT(*) AS smoothieita "
-                + "FROM Smoothie");
-        ResultSet rs = stmt.executeQuery();
+        try {
+            Connection conn = database.getConnection();
+            PreparedStatement stmt = conn.prepareStatement("SELECT COUNT(*) AS smoothieita "
+                    + "FROM Smoothie");
+            ResultSet rs = stmt.executeQuery();
+            
+            rs.next();
+            int lkm = rs.getInt("smoothieita");
+            
+            rs.close();
+            stmt.close();
+            conn.close();
+            
+            return lkm;
+        } catch (Exception ex) {
+            System.out.println("Error>>" + ex);
+        }
         
-        rs.next();
-        int lkm = rs.getInt("smoothieita");
-        
-        rs.close();
-        stmt.close();
-        conn.close();
-        
-        return lkm;
+        return 0;
     }
     
 }

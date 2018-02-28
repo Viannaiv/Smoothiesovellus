@@ -125,8 +125,6 @@ public class Main {
             System.out.println("Luodaan smoothieraaka-aine " + raakaAineID +
                     " smoothieen " + smoothieID);
             
-//            LUO TARKISTUS METODIT
-            
             SmoothieRaakaAine sra = new SmoothieRaakaAine(raakaAineID, smoothieID,
                     jarjestys, maara, ohje);
             sraDao.saveOrUpdate(sra);

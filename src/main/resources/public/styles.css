@@ -7,16 +7,16 @@ html {
     font-family: 'Karma', serif;
 }
 
-a {
-    margin-left: 25px;
-}
-
 h2 {
     margin-left: 20px;
 }
 
 h3{
     margin-left: 20px;
+}
+
+a {
+    margin-left: 25px;
 }
 
 a:link {
