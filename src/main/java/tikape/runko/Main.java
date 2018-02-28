@@ -137,7 +137,7 @@ public class Main {
             int id = Integer.parseInt(req.params("id"));
             HashMap map = new HashMap<>();
             map.put("smoothie", sDao.findOne(id));
-            map.put("raakaaineet", raDao.findAll());
+            map.put("raakaaineet", raDao.findAllAlphabetically());
             map.put("smoothiet", sDao.findAll());
             map.put("raakaaineetjarjestetty", sraDao.RaakaAineListInOrderForSmoothie(id));
             
