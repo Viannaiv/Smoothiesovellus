@@ -3,7 +3,7 @@
 
     <head>
         <title>Smoothiesovellus</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+        <meta charset="utf-8"/>
         <link rel="stylesheet" href="/styles.css" th:href="@{~/styles.css}" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Karma" rel="stylesheet"/> 
     </head>
@@ -25,7 +25,7 @@
                 
                 <ul>
                     <li>
-                        <span>Määrä: </span>
+                        <span>MÃ¤Ã¤rÃ¤: </span>
                         <span th:text="${raakaaine.maara}">maara</span>
                     </li>
                     <li>
@@ -37,7 +37,7 @@
         </ol><br/>
         
         <h3>
-            <span>Lisää raaka-aineita smoothieen</span>
+            <span>LisÃ¤Ã¤ raaka-aineita smoothieen</span>
             <span th:text="${smoothie.nimi}">Smoothien nimi</span>
         </h3>
         
@@ -50,7 +50,7 @@
                         th:text="${raakaaine.nimi}">raakaaineen nimi</option>
             </select><br/><br/>
             
-            <span id="s2">Järjestys:</span><br/>
+            <span id="s2">JÃ¤rjestys:</span><br/>
             <select name="jarjestys" size="4" required="required">
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -64,17 +64,17 @@
                 <option value="10">10</option>
             </select><br/><br/>
             
-            <span id="s3">Määrä:</span><br/>
+            <span id="s3">MÃ¤Ã¤rÃ¤:</span><br/>
             <input type="text" name="maara" placeholder="esim. 1 dl" required="required"
                     maxlength="30"/>
             <br/><br/>
             
             <span id="s4">Ohje:</span><br/>
             <textarea name="ohje" rows="6" cols="20" maxlength="100" 
-                      placeholder="max 100 merkkiä"></textarea>
+                      placeholder="max 100 merkkiÃ¤"></textarea>
             <br/><br/>
  
-            <input type="submit" value="Lisää raaka-aine"/>
+            <input type="submit" value="LisÃ¤Ã¤ raaka-aine"/>
         </form><br/><br/>
         
         <a href="/smoothiet">Smoothiet</a><br/>
