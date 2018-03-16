@@ -5,7 +5,6 @@ import java.util.*;
 import tikape.runko.database.Database;
 import tikape.runko.domain.RaakaAine;
 
-
 public class RaakaAineDao implements Dao<RaakaAine, Integer> {
     
     private Database database;
