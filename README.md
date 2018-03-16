@@ -15,4 +15,3 @@ joten jos käytät Safaria ole kiltti äläkä jätä select-valikoita tyhjäksi
 
 Linkki sovellukseen:
 https://tikape-smoothiesovellus-viva.herokuapp.com/
-
