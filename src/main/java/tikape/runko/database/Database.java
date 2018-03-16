@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Database {
 
-    private String databaseAddress;
+    private final String databaseAddress;
 
     public Database(String databaseAddress) throws ClassNotFoundException {
         this.databaseAddress = databaseAddress;
@@ -31,6 +31,8 @@ public class Database {
                 System.out.println("Running command >> " + lause);
                 st.executeUpdate(lause);
             }
+            
+            st.close(); // Always a good idea to close these when they are no longer needed.
 
         } catch (Throwable t) {
             System.out.println("Error >> " + t.getMessage());
