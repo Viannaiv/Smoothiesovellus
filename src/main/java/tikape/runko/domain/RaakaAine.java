@@ -1,11 +1,9 @@
-
 package tikape.runko.domain;
-
 
 public class RaakaAine {
     
-    private int id;
-    private String nimi;
+    private final int id;
+    private final String nimi;
 
     public RaakaAine(int id, String nimi) {
         this.id = id;
