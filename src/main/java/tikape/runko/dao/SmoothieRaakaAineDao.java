@@ -5,10 +5,9 @@ import java.util.*;
 import tikape.runko.database.Database;
 import tikape.runko.domain.SmoothieRaakaAine;
 
-
 public class SmoothieRaakaAineDao implements Dao<SmoothieRaakaAine, Integer> {
     
-    private Database database;
+    private final Database database;
 
     public SmoothieRaakaAineDao(Database database) {
         this.database = database;
