@@ -51,7 +51,7 @@ public class Main {
             raDao.saveOrUpdate(ra);
             
             res.redirect("/raakaaineet");
-            return "";
+            return null;
         });
         
         Spark.get("/raakaaine/:id", (req, res) -> {
@@ -80,7 +80,7 @@ public class Main {
             sraDao.deleteWithRaakaAineID(id);
             
             res.redirect("/raakaaineet");
-            return "";
+            return null;
         });
         
         Spark.post("/smoothie/delete", (req, res) -> { 
@@ -91,7 +91,7 @@ public class Main {
             sraDao.deleteWithSmoothieID(id);
             
             res.redirect("/smoothiet");
-            return "";
+            return null;
         });
         
         Spark.post("/smoothie/smoothieraakaaine/delete", (req, res) -> {
@@ -102,7 +102,7 @@ public class Main {
             sraDao.delete(rID, sID);
  
             res.redirect("/smoothie/" + sID);
-            return "";
+            return null;
         });
         
         Spark.post("/create/smoothie", (req, res) -> {
@@ -112,7 +112,7 @@ public class Main {
             sDao.saveOrUpdate(s);
             
             res.redirect("/smoothiet");
-            return "";
+            return null;
         });
         
         Spark.post("/smoothie/create/smoothieraakaaine", (req, res) -> {
@@ -130,7 +130,7 @@ public class Main {
             sraDao.saveOrUpdate(sra);
             
             res.redirect("/smoothie/" + smoothieID);
-            return "";
+            return null;
         });
         
         Spark.get("/smoothie/:id", (req, res) -> {
