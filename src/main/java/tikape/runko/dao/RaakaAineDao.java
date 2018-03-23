@@ -148,7 +148,7 @@ public class RaakaAineDao implements Dao<RaakaAine, Integer> {
         
             RaakaAine raakaA = findByName(ra.getNimi());
             
-            if(raakaA != null || ra.getNimi().isEmpty()) {
+            if(raakaA != null || ra.getNimi().trim().isEmpty()) {
                 return;
             }
             

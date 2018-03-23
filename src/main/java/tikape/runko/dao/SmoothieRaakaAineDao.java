@@ -31,9 +31,13 @@ public class SmoothieRaakaAineDao implements Dao<SmoothieRaakaAine, Integer> {
             ResultSet rs = stmt.executeQuery();
             if(rs.next()) {
 
-                SmoothieRaakaAine sra = new SmoothieRaakaAine(rs.getInt("raaka_aine_id"),
-                        rs.getInt("smoothie_id"), rs.getInt("jarjestys"),
-                        rs.getString("maara"), rs.getString("ohje"));
+                SmoothieRaakaAine sra = new SmoothieRaakaAine(
+                    rs.getInt("raaka_aine_id"),
+                    rs.getInt("smoothie_id"),
+                    rs.getInt("jarjestys"),
+                    rs.getString("maara"),
+                    rs.getString("ohje")
+                );
 
                 rs.close();
                 stmt.close();
@@ -60,9 +64,13 @@ public class SmoothieRaakaAineDao implements Dao<SmoothieRaakaAine, Integer> {
             List<SmoothieRaakaAine> srat = new ArrayList<>();
             
             while(rs.next()) {
-                SmoothieRaakaAine sra = new SmoothieRaakaAine(rs.getInt("raaka_aine_id"),
-                        rs.getInt("smoothie_id"), rs.getInt("jarjestys"),
-                        rs.getString("maara"), rs.getString("ohje"));
+                SmoothieRaakaAine sra = new SmoothieRaakaAine(
+                    rs.getInt("raaka_aine_id"),
+                    rs.getInt("smoothie_id"),
+                    rs.getInt("jarjestys"),
+                    rs.getString("maara"),
+                    rs.getString("ohje")
+                );
                 srat.add(sra);
             }
             
@@ -211,9 +219,14 @@ public class SmoothieRaakaAineDao implements Dao<SmoothieRaakaAine, Integer> {
             List<SmoothieRaakaAine> srat = new ArrayList<>();
             
             while(rs.next()) {
-                SmoothieRaakaAine sra = new SmoothieRaakaAine(rs.getInt("raaka_aine_id"),
-                        rs.getInt("smoothie_id"), rs.getInt("jarjestys"),
-                        rs.getString("maara"), rs.getString("ohje"));
+                SmoothieRaakaAine sra = new SmoothieRaakaAine(
+                    rs.getInt("raaka_aine_id"),
+                    rs.getInt("smoothie_id"),
+                    rs.getInt("jarjestys"),
+                    rs.getString("maara"),
+                    rs.getString("ohje")
+                );
+                
                 sra.setNimi(rs.getString("nimi"));
                 srat.add(sra);
             }
